@@ -1,0 +1,424 @@
+1.    Find the Maximum Element and Average of Elements in an Array.
+
+public class ArrayStats {
+    public static void main(String[] args) {
+        int[] array = {3, 5, 7, 2, 8, 6};
+        int max = findMax(array);
+        double average = calculateAverage(array);
+
+        System.out.println("Maximum Element: " + max);
+        System.out.println("Average of Elements: " + average);
+    }
+
+    
+    public static int findMax(int[] array) {
+        int max = array[0];
+        for (int num : array) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+
+   
+    public static double calculateAverage(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        return (double) sum / array.length;
+    }
+}
+
+
+1.    Find the Maximum Element and Average of Elements in an Array .Reverse a given Array and print.
+
+public class ArrayOperations {
+    public static void main(String[] args) {
+        int[] array = {3, 5, 7, 2, 8, 6}; 
+
+        int max = findMax(array);
+        double average = calculateAverage(array);
+
+        System.out.println("Maximum Element: " + max);
+        System.out.println("Average of Elements: " + average);
+
+        reverseArray(array);
+        System.out.print("Reversed Array: ");
+        printArray(array);
+    }
+
+   
+    public static int findMax(int[] array) {
+        int max = array[0];
+        for (int num : array) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+
+    
+    public static double calculateAverage(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        return (double) sum / array.length;
+    }
+
+   
+    public static void reverseArray(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+        while (left < right) {
+            
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+
+
+3.Find the second maximum and second minimum Elements of an array.
+
+
+import java.util.Arrays;
+
+public class SecondMaxMin {
+    public static void main(String[] args) {
+        int[] array = {3, 5, 7, 2, 8, 6, 8}; 
+
+        int secondMax = findSecondMax(array);
+        int secondMin = findSecondMin(array);
+
+        System.out.println("Second Maximum Element: " + secondMax);
+        System.out.println("Second Minimum Element: " + secondMin);
+    }
+
+    
+    public static int findSecondMax(int[] array) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+
+        for (int num : array) {
+            if (num > max) {
+                secondMax = max;
+                max = num;
+            } else if (num > secondMax && num < max) {
+                secondMax = num;
+            }
+        }
+
+        return secondMax; 
+    }
+
+    
+    public static int findSecondMin(int[] array) {
+        int min = Integer.MAX_VALUE;
+        int secondMin = Integer.MAX_VALUE;
+
+        for (int num : array) {
+            if (num < min) {
+                secondMin = min;
+                min = num;
+            } else if (num < secondMin && num > min) {
+                secondMin = num;
+            }
+        }
+
+        return secondMin; 
+    }
+}
+
+
+4.Count the number of occurrence of each element of an array.
+
+
+import java.util.HashMap;
+
+public class ElementCount {
+    public static void main(String[] args) {
+        int[] array = {3, 5, 7, 2, 8, 5, 3, 6, 3}; 
+
+        HashMap<Integer, Integer> countMap = countOccurrences(array);
+
+        System.out.println("Element Counts:");
+        for (HashMap.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            System.out.println("Element: " + entry.getKey() + ", Count: " + entry.getValue());
+        }
+    }
+
+    
+    public static HashMap<Integer, Integer> countOccurrences(int[] array) {
+        HashMap<Integer, Integer> countMap = new HashMap<>();
+
+        for (int num : array) {
+            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+        }
+
+        return countMap;
+    }
+}
+
+
+5.    Find the Fibonacci Series
+
+
+import java.util.Scanner;
+
+public class FibonacciSeries {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of terms for Fibonacci series: ");
+        int terms = scanner.nextInt();
+
+        System.out.println("Fibonacci Series up to " + terms + " terms:");
+
+        for (int i = 0; i < terms; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+
+        scanner.close();
+    }
+
+   
+    public static int fibonacci(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+
+        return fibonacci(n - 1) + fibonacci(n - 2); 
+    }
+}
+
+
+6.    Program to check Harshad number or not using Java
+Hint: - Harshad number is a number or an integer in base 10 which is completely divisible by sum of its digits.
+Example: Suppose a number 24. Calculate the sum of digits of the number   (2 + 4) = 6 .Check whether the number entered by user is completely divisible by    sum of its digits or not.
+
+
+
+import java.util.Scanner;
+
+public class HarshadNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        if (isHarshadNumber(number)) {
+            System.out.println(number + " is a Harshad number.");
+        } else {
+            System.out.println(number + " is not a Harshad number.");
+        }
+
+        scanner.close();
+    }
+
+   
+    public static boolean isHarshadNumber(int number) {
+        int sumOfDigits = sumDigits(number);
+        return number % sumOfDigits == 0;
+    }
+
+   
+    public static int sumDigits(int number) {
+        int sum = 0;
+        while (number > 0) {
+            sum += number % 10; 
+            number /= 10;       
+        }
+        return sum;
+    }
+}
+
+
+7.    Java Program for Sorting first half in Ascending order and second half in Descending order
+Example
+Input: arr [6] = [1, 90, 34, 89, 7, 9]
+Output: 1 7 9 90 89 34
+
+import java.util.Arrays;
+
+public class SortHalfArray {
+    public static void main(String[] args) {
+        int[] arr = {1, 90, 34, 89, 7, 9}; 
+
+        sortArray(arr);
+
+        System.out.print("Sorted Array: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
+    
+    public static void sortArray(int[] arr) {
+        int n = arr.length;
+        int mid = n / 2;
+
+        
+        Arrays.sort(arr, 0, mid);
+
+        
+        Arrays.sort(arr, mid, n);
+        reverse(arr, mid, n);
+    }
+
+   
+    public static void reverse(int[] arr, int start, int end) {
+        int left = start;
+        int right = end - 1;
+
+        while (left < right) {
+            // Swap elements
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
+
+
+8.    Java program to count numbers of even and odd elements in an array
+
+
+import java.util.Scanner;
+
+public class CountEvenOdd {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+        
+        int[] array = new int[n];
+
+        
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        
+        int evenCount = 0;
+        int oddCount = 0;
+
+        for (int num : array) {
+            if (num % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
+            }
+        }
+
+       
+        System.out.println("Number of Even elements: " + evenCount);
+        System.out.println("Number of Odd elements: " + oddCount);
+
+        scanner.close();
+    }
+}
+
+
+
+9.    Java program for rotation of elements of array- left and right. An array is said to be right rotated if all the selected elements were moved towards right by one position.
+
+
+import java.util.Scanner;
+
+public class ArrayRotation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+        int[] array = new int[n];
+
+       
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        
+        System.out.print("Enter the number of positions to rotate: ");
+        int positions = scanner.nextInt();
+        System.out.print("Enter direction (left/right): ");
+        String direction = scanner.next();
+
+        
+        if (direction.equalsIgnoreCase("left")) {
+            rotateLeft(array, positions);
+        } else if (direction.equalsIgnoreCase("right")) {
+            rotateRight(array, positions);
+        } else {
+            System.out.println("Invalid direction. Please enter 'left' or 'right'.");
+        }
+
+        
+        System.out.print("Rotated Array: ");
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+
+        scanner.close();
+    }
+
+    
+    public static void rotateLeft(int[] array, int positions) {
+        int n = array.length;
+        positions = positions % n; // Handle positions greater than array length
+        reverse(array, 0, positions - 1);
+        reverse(array, positions, n - 1);
+        reverse(array, 0, n - 1);
+    }
+
+    
+    public static void rotateRight(int[] array, int positions) {
+        int n = array.length;
+        positions = positions % n; // Handle positions greater than array length
+        reverse(array, n - positions, n - 1);
+        reverse(array, 0, n - positions - 1);
+        reverse(array, 0, n - 1);
+    }
+
+    
+    public static void reverse(int[] array, int start, int end) {
+        while (start < end) {
+            int temp = array[start];
+            array[start] = array[end];
+            array[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
